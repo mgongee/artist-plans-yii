@@ -18,7 +18,7 @@ class ArtistSearch extends Artist
     public function rules()
     {
         return [
-            [['id', 'city_id', 'celebrity_status', 'order'], 'integer'],
+            [['id', 'city_id', 'celebrity_status', 'order', 'show'], 'integer'],
             [['name', 'website_url', 'picture_url'], 'safe'],
         ];
     }
@@ -56,6 +56,7 @@ class ArtistSearch extends Artist
             'city_id' => $this->city_id,
             'celebrity_status' => $this->celebrity_status,
             'order' => $this->order,
+			'show' => $this->show,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

@@ -32,6 +32,11 @@ use app\models\City;
             ['prompt' => '---- Select Status ----']    // options
         ); ?>
 
+	<?= $form->field($model, 'show')->dropDownList(
+            $model::$show_list           // Flat array ('id'=>'label')
+        ); ?>
+
+	
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

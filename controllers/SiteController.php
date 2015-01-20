@@ -129,4 +129,12 @@ class SiteController extends Controller
 	{
 		return $this->render('say', ['message' => $message]);
 	}
+	
+	public function actionWorld()
+    {
+        return $this->render('world', [
+            ''
+        ]);
+    }
+
 }

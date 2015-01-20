@@ -40,7 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
 				'label' => 'Genres',
 				'value' => $genres,
 			],
-			'order'
+			'order',
+			['attribute' => 'show', 'value' => $model->getShowName()],
         ],
     ]) ?>
 

@@ -14,6 +14,7 @@ use Yii;
  * @property string $picture_url
  * @property integer $celebrity_status
  * @property integer $order 
+ * @property integer $show
  *
  * @property City $city
  * @property Artistgenre[] $artistgenres 
@@ -25,6 +26,12 @@ class Artist extends \yii\db\ActiveRecord
 	static $status_list = [
 		'0' => 'Artist',
 		'1' => 'Celebrity',
+	];
+	
+	
+	static $show_list = [
+		'0' => 'Off',
+		'1' => 'On',
 	];
 	
 	/**
@@ -41,10 +48,9 @@ class Artist extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            //[['name', 'city_id', 'website_url', 'picture_url', 'celebrity_status'], 'required'],
-			[['name', 'city_id', 'celebrity_status', 'order'], 'required'],
-            [['city_id', 'celebrity_status', 'order'], 'integer'],
-            [['name', 'website_url', 'picture_url'], 'string', 'max' => 255]
+			[['name', 'city_id', 'celebrity_status', 'order', 'show'], 'required'],
+            [['city_id', 'celebrity_status', 'order', 'show'], 'integer'],
+            [['name', 'website_url', 'picture_url'], 'string', 'max' => 255] //	[['show'], 'default', 'value' => 1]
         ];
     }
 
@@ -61,6 +67,7 @@ class Artist extends \yii\db\ActiveRecord
             'picture_url' => 'Picture Url',
             'celebrity_status' => 'Celebrity Status',
 			'order' => 'Order', 
+			'show' => 'Show', 
         ];
     }
 
@@ -91,12 +98,23 @@ class Artist extends \yii\db\ActiveRecord
 	
 	
     /**
-     * @return string
+     * Returns title of the current status of this artist
+	 * @return string
      */
     public function getStatusName()
     {
         return self::$status_list[$this->celebrity_status];
     }
+	
+    /**
+     * Returns title of the current show mode of this artist
+	 * @return string
+     */
+    public function getShowName()
+    {
+        return self::$show_list[$this->show];
+    }
+	
 	
 	/** 
 	 * $request = Yii::$app->request->post()
