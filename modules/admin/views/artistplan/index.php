@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\grid\DataColumn;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ArtistPlanSearch */
@@ -27,12 +28,24 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'artist_id',
-            'city_id',
+			[
+				'class' => DataColumn::className(),
+				'attribute' => 'artist.name',
+				'format' => 'text',
+				'label' => 'Artist',
+			], //'artist.name',
+            [
+				'class' => DataColumn::className(),
+				'attribute' => 'city.name',
+				'format' => 'text',
+				'label' => 'City',
+			], //'city.name',
             'continent',
             // 'start_date',
             // 'end_date',
-
+			['attribute' => 'show_status', 'value' => function ($data) {
+                return $data->getShowName(); 
+            }],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

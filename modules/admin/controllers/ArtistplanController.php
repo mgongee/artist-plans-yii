@@ -66,7 +66,8 @@ class ArtistplanController extends Controller
     public function actionCreate()
     {
         $model = new ArtistPlan();
-
+		$model->show_status = 1;
+		
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

@@ -53,6 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'label' => 'End date',
 				'value' => Yii::$app->formatter->asDate($model->end_date, 'long'),
 			],
+			['attribute' => 'show_status', 'value' => $model->getShowName()]
         ],
     ]) ?>
 

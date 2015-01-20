@@ -14,11 +14,18 @@ use Yii;
  * @property string $continent
  * @property string $start_date
  * @property string $end_date
+ * @property string $show_status
  *
  * @property Artist $artist
  */
 class ArtistPlan extends \yii\db\ActiveRecord
 {
+	
+	static $show_list = [
+		'0' => 'Off',
+		'1' => 'On',
+	];
+	
     /**
      * @inheritdoc
      */
@@ -33,8 +40,8 @@ class ArtistPlan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'artist_id', 'continent', 'start_date'], 'required'],
-            [['artist_id', 'city_id'], 'integer'],
+			[['name', 'artist_id', 'continent', 'start_date', 'show_status'], 'required'],
+			[['artist_id', 'city_id', 'show_status'], 'integer'],
             [['continent'], 'string'],
             [['start_date', 'end_date'], 'safe'],
             [['name'], 'string', 'max' => 255]
@@ -73,6 +80,16 @@ class ArtistPlan extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Genre::className(), ['id' => 'genre_id'])
 			->viaTable('artistplan_to_genre', ['artistplan_id' => 'id']);
+    }
+	
+	
+    /**
+     * Returns title of the current show mode of this artistplan
+	 * @return string
+     */
+    public function getShowName()
+    {
+        return self::$show_list[$this->show_status];
     }
 	
 	

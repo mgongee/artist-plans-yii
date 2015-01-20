@@ -33,6 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
 			['attribute' => 'celebrity_status', 'value' => function ($data) {
                 return $data->getStatusName(); 
             }],//$model->getStatusName()],
+			['attribute' => 'show_status', 'value' => function ($data) {
+                return $data->getShowName(); 
+            }],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

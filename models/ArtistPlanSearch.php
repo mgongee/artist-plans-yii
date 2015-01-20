@@ -18,7 +18,7 @@ class ArtistPlanSearch extends ArtistPlan
     public function rules()
     {
         return [
-            [['id', 'artist_id', 'city_id'], 'integer'],
+            [['id', 'artist_id', 'city_id', 'show_status'], 'integer'],
             [['name', 'continent', 'start_date', 'end_date'], 'safe'],
         ];
     }
@@ -57,6 +57,7 @@ class ArtistPlanSearch extends ArtistPlan
             'city_id' => $this->city_id,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
+			'show_status' => $this->show_status
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
