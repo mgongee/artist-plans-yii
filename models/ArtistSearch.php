@@ -55,8 +55,8 @@ class ArtistSearch extends Artist
             'id' => $this->id,
             'city_id' => $this->city_id,
             'celebrity_status' => $this->celebrity_status,
-            'order' => $this->order,
-			'show' => $this->show,
+            'show_order' => $this->show_order,
+			'show_status' => $this->show_status,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

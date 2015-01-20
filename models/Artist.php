@@ -13,8 +13,8 @@ use Yii;
  * @property string $website_url
  * @property string $picture_url
  * @property integer $celebrity_status
- * @property integer $order 
- * @property integer $show
+ * @property integer $show_order 
+ * @property integer $show_status
  *
  * @property City $city
  * @property Artistgenre[] $artistgenres 
@@ -48,8 +48,8 @@ class Artist extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-			[['name', 'city_id', 'celebrity_status', 'order', 'show'], 'required'],
-            [['city_id', 'celebrity_status', 'order', 'show'], 'integer'],
+			[['name', 'city_id', 'celebrity_status', 'show_order', 'show_status'], 'required'],
+            [['city_id', 'celebrity_status', 'show_order', 'show_status'], 'integer'],
             [['name', 'website_url', 'picture_url'], 'string', 'max' => 255] //	[['show'], 'default', 'value' => 1]
         ];
     }
@@ -112,7 +112,7 @@ class Artist extends \yii\db\ActiveRecord
      */
     public function getShowName()
     {
-        return self::$show_list[$this->show];
+        return self::$show_list[$this->show_status];
     }
 	
 	
