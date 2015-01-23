@@ -44,7 +44,7 @@ class SiteController extends Controller
 		return 12;
 	}
 
-		public function behaviors()
+	public function behaviors()
     {
         return [
             'access' => [
@@ -246,7 +246,7 @@ class SiteController extends Controller
 
         return $this->render('continent', [
 			'headerLinks' => $this->generateLinks(strtolower($continent)),
-			'continent' => $continent,
+			'continent' => $searchModel->getContinentName($continent),
             'year' => $year,
 			'month' => date('F', mktime(0, 0, 0, $month, 1, 2000, 0)),
 			'searchModel' => $searchModel,
@@ -264,7 +264,7 @@ class SiteController extends Controller
 
         return $this->render('continentyear', [
 			'headerLinks' => $this->generateLinks(strtolower($continent)),
-			'continent' => $continent,
+			'continent' => $searchModel->getContinentName($continent),
             'year' => $year,
 			'searchModel' => $searchModel,
             'dataProvider' => $dataProvider

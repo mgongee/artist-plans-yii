@@ -66,8 +66,23 @@ class ArtistPlanSearch extends ArtistPlan
         return $dataProvider;
     }
 	
-	
-    /**
+	public function getContinentName($continent) {
+		$continent = strtolower($continent);
+		$continents = [
+			'asia' => 'Asia',
+			'europe' => 'Europe',
+			'northamerica' => 'North America',
+			'africa' => 'Africa', 
+			'oceania' => 'Oceania', 
+			'antarctica' => 'Antarctica', 
+			'southamerica' => 'South America'
+		];
+		if (array_key_exists($continent, $continents)) return $continents[$continent];
+		return $continent;
+	}
+
+
+	/**
      * Creates data provider instance with search query applied
      *
      * @return ActiveDataProvider
@@ -78,7 +93,7 @@ class ArtistPlanSearch extends ArtistPlan
 		$query = ArtistPlan::find()->andWhere(['show_status' => 1]);
 		
 		if ($continent) {
-			$query = $query->andWhere(['continent' => strtolower($continent)])
+			$query = $query->andWhere(['continent' => $this->getContinentName($continent)])
 				->andWhere(['>=', 'start_date', $year .'-01-01 00:00:00'])
 				->andWhere(['<=', 'end_date', $year .'-12-31 00:00:00']);
 		}
@@ -101,7 +116,7 @@ class ArtistPlanSearch extends ArtistPlan
 		$query = ArtistPlan::find()->andWhere(['show_status' => 1]);
 		
 		if ($continent) {
-			$query = $query->andWhere(['continent' => strtolower($continent)])
+			$query = $query->andWhere(['continent' => $this->getContinentName($continent)])
 				->andWhere(['>=', 'start_date', $year .'-' . $month . '-01 00:00:00'])
 				->andWhere(['<=', 'end_date', $year .'-' . ($month+1) . '-01 00:00:00']);
 		}
