@@ -8,16 +8,7 @@ $config = [
     'bootstrap' => ['log'],
 	'modules' => [
 		'admin' => [
-            'class' => 'app\modules\admin\Module',
-		/*	'as access' => [
-				'class' => 'yii\filters\AccessControl',
-				'rules' => [
-					[
-						'allow' => true,
-						'roles' => ['Administrator'],
-					]
-				]
-			],*/
+            'class' => 'app\modules\admin\Module'
         ]
 	],
     'components' => [
