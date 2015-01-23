@@ -1,0 +1,13 @@
+RewriteEngine On
+RewriteBase /
+
+# If a directory or a file exists, use the request directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Otherwise forward the request to index.php
+RewriteRule . index.php
+
+RewriteCond %{REQUEST_URI} !(.*)/$
+#RewriteRule ^(.(css|js|jpg))$ /$1/ [L,R=301]
+RewriteRule ^(\..*)$ /$1/ [L,R=301]

@@ -65,4 +65,21 @@ class ArtistSearch extends Artist
 
         return $dataProvider;
     }
+	
+	
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @return ActiveDataProvider
+     */
+    public function searchActive()
+    {
+		$query = Artist::find()->andWhere(['show_status' => 1]);
+		
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        return $dataProvider;
+    }
 }

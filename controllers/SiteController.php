@@ -100,8 +100,15 @@ class SiteController extends Controller
 	}
 	
     public function actionIndex()
-    {
-		return $this->actionWorldyear();
+	{
+		$searchModel = new ArtistSearch();
+		$dataProvider = $searchModel->searchActive();
+
+		return $this->render('index', [
+			'headerLinks' => $this->generateLinks('world'),
+			'searchModel' => $searchModel,
+			'dataProvider' => $dataProvider
+		]);
     }
 
     public function actionLogin()

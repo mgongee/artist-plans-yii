@@ -32,10 +32,7 @@ $this->params['headerLinks'] = $headerLinks;
 				'attribute' => 'website_url',
 				'format' => 'url',
 				'label' => 'Website'
-			],
-			['attribute' => 'celebrity_status', 'value' => function ($data) {
-                return $data->getStatusName(); 
-            }],//$model->getStatusName()],
+			]
         ],
     ]); ?>
 
