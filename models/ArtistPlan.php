@@ -94,6 +94,20 @@ class ArtistPlan extends \yii\db\ActiveRecord
 	
 	
     /**
+     * Returns string describing start and end date of the artist plan
+	 * @return string
+     */
+    public function getDates()
+    {
+		$dates = 'Starts ' . date("d M Y", strtotime($this->start_date));
+		
+		if ($this->end_date != '0000-00-00 00:00:00') {
+			$dates .= ', ends ' . date("d M Y", strtotime($this->end_date));
+		}
+        return $dates;
+    }
+	
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getCity()
@@ -102,7 +116,7 @@ class ArtistPlan extends \yii\db\ActiveRecord
     }
 	
     /**
-     * @return \yii\db\ActiveQuery
+     * @return string
      */
     public function getCityName()
     {

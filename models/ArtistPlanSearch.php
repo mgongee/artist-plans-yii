@@ -65,4 +65,90 @@ class ArtistPlanSearch extends ArtistPlan
 
         return $dataProvider;
     }
+	
+	
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @return ActiveDataProvider
+     */
+    public function searchActiveContinentYear($continent = false, $year = 2015)
+    {
+        //$query = ArtistPlan::findByCondition(['show_status' => 1],false);
+		$query = ArtistPlan::find()->andWhere(['show_status' => 1]);
+		
+		if ($continent) {
+			$query->andWhere(['continent' => $continent])
+				->andWhere(['>=', 'start_date', $year .'-01-01 00:00:00'])
+				->andWhere(['<=', 'end_date', $year .'-12-31 00:00:00']);
+		}
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        return $dataProvider;
+    }
+	
+	
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @return ActiveDataProvider
+     */
+    public function searchActiveContinent($continent = false, $year = 2015, $month = 1)
+    {
+        //$query = ArtistPlan::findByCondition(['show_status' => 1],false);
+		$query = ArtistPlan::find()->andWhere(['show_status' => 1]);
+		
+		if ($continent) {
+			$query = $query->andWhere(['continent' => $continent])
+				->andWhere(['>=', 'start_date', $year .'-' . $month . '-01 00:00:00'])
+				->andWhere(['<=', 'end_date', $year .'-' . ($month+1) . '-01 00:00:00']);
+		}
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        return $dataProvider;
+    }
+	
+	
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @return ActiveDataProvider
+     */
+    public function searchActiveWorld($year = 2015, $month = 1)
+    {
+        //$query = ArtistPlan::findByCondition(['show_status' => 1],false);
+		$query = ArtistPlan::find()->andWhere(['show_status' => 1])
+			->andWhere(['>=', 'start_date', $year .'-' . $month . '-01 00:00:00'])
+			->andWhere(['<=', 'end_date', $year .'-' . ($month+1) . '-01 00:00:00']);
+		
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        return $dataProvider;
+    }
+	
+	
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @return ActiveDataProvider
+     */
+    public function searchActiveWorldYear($year = 2015)
+    {
+        //$query = ArtistPlan::findByCondition(['show_status' => 1],false);
+		$query = ArtistPlan::find()->andWhere(['show_status' => 1])
+			->andWhere(['>=', 'start_date', $year .'-01-01 00:00:00'])
+			->andWhere(['<=', 'end_date', $year .'-12-31 00:00:00']);
+		
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        return $dataProvider;
+    }
 }

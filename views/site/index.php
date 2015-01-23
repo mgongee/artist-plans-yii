@@ -5,14 +5,15 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ArtistSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $headerLinks array */
 
-$this->title = 'ArtistPlans.com'; 
-
+$this->title = 'GigsPlans.com future plans of Artists/Bands gigs in the world'; 
+$this->params['headerLinks'] = $headerLinks;
 ?>
 
 <div class="artist-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
     
 
     <?= GridView::widget([

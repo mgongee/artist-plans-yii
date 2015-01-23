@@ -1,0 +1,43 @@
+/* 
+    Document   : legacy
+    Created on : 21.01.2015, 16:13:55
+    Author     : mgongee
+    Description:
+        Old css code
+*/
+
+.nav_bar {
+	padding-top: 30px;
+}
+
+.hovermenu ul{
+	font: 16px Roboto Condensed;
+	padding-left: 25;
+	margin-left: 0;
+	height: 14px;
+}
+
+.hovermenu ul li{
+	list-style: none;
+	display: inline;
+}
+
+.hovermenu ul li a{
+	padding: 2px 0.5em;
+	text-decoration: none;
+	float: center;
+	color: #81BEF7;
+	background-color: #000000;
+	border: 2px solid #6E6E6E;
+}
+
+.hovermenu ul li a:hover{
+	background-color: #6E6E6E;
+	border-style: outset;
+}
+
+html>body .hovermenu ul li a:active{ /* Apply mousedown effect only to NON IE browsers */
+	border-style: inset;
+}
+
+

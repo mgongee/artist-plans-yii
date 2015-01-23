@@ -46,10 +46,17 @@ $config = [
             ],
         ],
 		'urlManager' => [
+			'suffix' => '/',
 			'enablePrettyUrl' => true,
 			'rules' => [
-                'mzzz' => 'admin/default/index',
-				'zx<module:\w+>' => '<module>/default/index'
+				'admin' => 'admin/default/index',
+				'admin/<controller:\w+>' => 'admin/<controller>/index',
+				'admin/<controller:\w+>/<action:\w+>' => 'admin/<controller>/<action>',
+				'<route:\w+>' => 'site/artistplans',
+				'<route:\w+>/<year:\d+>' => 'site/artistplansforyear',
+				'<route:\w+>/<year:\d+>/<month:\d+>' => 'site/artistplans',
+				'<route:\w+>/<year:\d+>/<month:\w+>' => 'site/artistplans'
+				//'zx<module:\w+>' => '<module>/default/index'
             ]
 		],
         'db' => require(__DIR__ . '/db.php'),
