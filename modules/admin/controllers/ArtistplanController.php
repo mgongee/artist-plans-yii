@@ -19,14 +19,14 @@ class ArtistplanController extends Controller
 {
     public function behaviors()
     {
-        return [
+        return array_merge($this->defaultBehaviors(),[
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
             ],
-        ];
+        ]);
     }
 
     /**

@@ -12,18 +12,18 @@ use yii\filters\VerbFilter;
 /**
  * ContinentController implements the CRUD actions for Continent model.
  */
-class ContinentController extends Controller
+class ContinentController extends AdminDefaultController
 {
     public function behaviors()
     {
-        return [
+        return array_merge($this->defaultBehaviors(),[
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
             ],
-        ];
+        ]);
     }
 
     /**

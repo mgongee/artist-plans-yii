@@ -9,10 +9,16 @@ $config = [
 	'modules' => [
 		'admin' => [
             'class' => 'app\modules\admin\Module',
-        ],
-		'tttest' => [
-            'class' => 'app\modules\tttest\Module',
-        ],
+		/*	'as access' => [
+				'class' => 'yii\filters\AccessControl',
+				'rules' => [
+					[
+						'allow' => true,
+						'roles' => ['Administrator'],
+					]
+				]
+			],*/
+        ]
 	],
     'components' => [
         'request' => [
@@ -49,6 +55,8 @@ $config = [
 			'suffix' => '/',
 			'enablePrettyUrl' => true,
 			'rules' => [
+				'login' => 'site/login',
+				'logout' => 'site/logout',
 				'admin' => 'admin/default/index',
 				'admin/<controller:\w+>' => 'admin/<controller>/index',
 				'admin/<controller:\w+>/<action:\w+>' => 'admin/<controller>/<action>',

@@ -15,18 +15,18 @@ use yii\data\ActiveDataProvider;
 /**
  * ArtistController implements the CRUD actions for Artist model.
  */
-class ArtistController extends Controller
+class ArtistController extends AdminDefaultController
 {
     public function behaviors()
     {
-        return [
+        return array_merge($this->defaultBehaviors(),[
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
             ],
-        ];
+        ]);
     }
 
     /**

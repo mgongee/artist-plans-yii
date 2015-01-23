@@ -48,7 +48,7 @@ AppAsset::register($this);
 <body>
 
 <?php $this->beginBody() ?>
-
+<?php if (!isset($this->params['breadcrumbs'])) { ?>
 <center>
 	<div style="background-image:url(/img/bg.jpg);padding:0px;width:960px;height:230px;border:0px solid black;">
 		<table border="0">
@@ -85,9 +85,11 @@ AppAsset::register($this);
 			<?php endforeach; ?>
 		</table>
 	</div>
-</center>
+</center> <?php } ?>
    <div class="wrap">
-        <?php /*
+	   <?php if (isset($this->params['breadcrumbs'])) : ?>
+	   <div>
+	   <?php
             NavBar::begin([
                 'brandLabel' => 'ArtistPlans.com',
                 'brandUrl' => Yii::$app->homeUrl,
@@ -116,12 +118,16 @@ AppAsset::register($this);
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => $items,
             ]);
-            NavBar::end();
-		  <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
-		 */
-        ?>
+            NavBar::end(); 
+		?>
+		</div>
+	   <nav style="padding-top: 60px;">
+		<?=Breadcrumbs::widget([
+			'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []
+		]); ?>
+	   </nav>
+        <?php endif; ?>
+	   
         <div class="container">  
 			<?= $content ?>
         </div>

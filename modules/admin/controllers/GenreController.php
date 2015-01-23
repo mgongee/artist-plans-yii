@@ -12,18 +12,18 @@ use yii\filters\VerbFilter;
 /**
  * GenreController implements the CRUD actions for Genre model.
  */
-class GenreController extends Controller
+class GenreController extends AdminDefaultController
 {
     public function behaviors()
     {
-        return [
+        return array_merge($this->defaultBehaviors(),[
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
             ],
-        ];
+        ]);
     }
 
     /**

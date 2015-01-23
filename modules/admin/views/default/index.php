@@ -7,6 +7,7 @@ use yii\helpers\Html;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Welcome to the ArtistPlans admin panel';
+$this->params['breadcrumbs'] = [];
 ?>
 
 <div class="admin-default-index">
