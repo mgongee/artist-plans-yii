@@ -15,7 +15,7 @@ use yii\data\ActiveDataProvider;
 /**
  * ArtistplanController implements the CRUD actions for ArtistPlan model.
  */
-class ArtistplanController extends Controller
+class ArtistplanController extends AdminDefaultController
 {
     public function behaviors()
     {
