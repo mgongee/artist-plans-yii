@@ -1,5 +1,6 @@
 <?php
 
+use app\helpers\Misc;
 use yii\helpers\Html;
 use yii\grid\GridView;
 /* @var $this yii\web\View */
@@ -30,8 +31,17 @@ $this->params['headerLinks'] = $headerLinks;
 			],
 			[
 				'attribute' => 'website_url',
-				'format' => 'url',
+				'format' => 'raw',
+				'value' => function($artist) {
+					$linkUrl = Misc::addScheme($artist->website_url);
+					return Html::a($artist->website_url, $linkUrl, ['target' => '_blank']);
+				},
 				'label' => 'Website'
+			],
+			[
+				'attribute' => 'picture_url',
+				'format' => 'raw',
+				'label' => ''
 			]
         ],
     ]); ?>
