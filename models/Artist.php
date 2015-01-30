@@ -96,6 +96,16 @@ class Artist extends \yii\db\ActiveRecord
 			->viaTable('artist_to_genre', ['artist_id' => 'id']);
     }
 	
+	/**
+	 * Generates a HTML list of genres
+     * @return string
+     */
+    public function getGenresList()
+    {
+		$genresList = Genre::makeViewArray($this->getGenres()->all());
+        return $genresList;
+    }
+	
 	
     /**
      * Returns title of the current status of this artist

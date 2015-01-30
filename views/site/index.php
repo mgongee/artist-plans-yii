@@ -23,21 +23,25 @@ $this->params['headerLinks'] = $headerLinks;
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'name',
-			[
-				'attribute' => 'city.name',
-				'format' => 'text',
-				'label' => 'Home town'
-			],
 			[
 				'attribute' => 'website_url',
 				'format' => 'raw',
 				'value' => function($artist) {
 					$linkUrl = Misc::addScheme($artist->website_url);
-					return Html::a($artist->website_url, $linkUrl, ['target' => '_blank']);
+					$genresList = $artist->getGenresList();
+					
+					$html = Html::a($artist->website_url, $linkUrl, ['target' => '_blank'])
+						. '<br>Artist: <strong>' . $artist->name . '</strong>';
+					
+					if ($genresList) {
+						$html .= '<br>Genres: <i>' . $genresList . '</i>';
+					}
+					
+					return $html;
+						
 				},
 				'label' => 'Website'
-			],
+			],			
 			[
 				'attribute' => 'picture_url',
 				'format' => 'raw',
