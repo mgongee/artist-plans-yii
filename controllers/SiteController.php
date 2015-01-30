@@ -168,9 +168,9 @@ class SiteController extends Controller
 				case 'europe':
 				case 'southamerica':
 				case 'northamerica':
-					return $this->actionContinent(ucfirst($get['route']));
+					return $this->actionContinentMonth(ucfirst($get['route']));
 				case 'world':
-					return $this->actionWorld();
+					return $this->actionWorldMonth();
 			}
 		}
 		else {
@@ -188,17 +188,17 @@ class SiteController extends Controller
 				case 'europe':
 				case 'southamerica':
 				case 'northamerica':
-					return $this->actionContinentyear(ucfirst($get['route']));
+					return $this->actionContinentYear(ucfirst($get['route']));
 				case 'world':
-					return $this->actionWorldyear();
+					return $this->actionWorldYear();
 			}
 		}
 		else {
-			return $this->actionWorldyear();
+			return $this->actionWorldYear();
 		}
 	}
 	
-	public function actionWorldyear() {
+	public function actionWorldYear() {
 		$get = Yii::$app->request->queryParams;
 		$year = isset($get['year']) ? intval($get['year']) : 2015;
 		
@@ -213,14 +213,14 @@ class SiteController extends Controller
         ]);	
 	}
 	
-	public function actionWorld()
+	public function actionWorldMonth()
     {
 		$get = Yii::$app->request->queryParams;
 		$year = isset($get['year']) ? intval($get['year']) : 2015;
 		if (isset($get['month'])) {
 			$month = $this->parseMonth($get['month']);
 			$searchModel = new ArtistPlanSearch();
-			$dataProvider = $searchModel->searchActiveWorld($year, $month);
+			$dataProvider = $searchModel->searchActiveWorldMonth($year, $month);
 
 			return $this->render('world', [
 				'headerLinks' => $this->generateLinks('world'),
@@ -235,14 +235,14 @@ class SiteController extends Controller
 		}
     }
 	
-	private function actionContinent($continent)
+	private function actionContinentMonth($continent)
     {
 		$get = Yii::$app->request->queryParams;
 		$year = isset($get['year']) ? intval($get['year']) : 2015;
 		$month = isset($get['month']) ? $this->parseMonth($get['month']) : 1;
 		
 		$searchModel = new ArtistPlanSearch();
-		$dataProvider = $searchModel->searchActiveContinent($continent, $year, $month);
+		$dataProvider = $searchModel->searchActiveContinentMonth($continent, $year, $month);
 
         return $this->render('continent', [
 			'headerLinks' => $this->generateLinks(strtolower($continent)),
@@ -254,7 +254,7 @@ class SiteController extends Controller
         ]);
     }
 	
-	private function actionContinentyear($continent)
+	private function actionContinentYear($continent)
     {
 		$get = Yii::$app->request->queryParams;
 		$year = isset($get['year']) ? intval($get['year']) : 2015;

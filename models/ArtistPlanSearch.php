@@ -12,6 +12,11 @@ use app\models\ArtistPlan;
  */
 class ArtistPlanSearch extends ArtistPlan
 {
+	
+	static public $startOfTime = '0000-00-00 00:00:00';
+	static public $endOfTime = '2030-01-10 00:00:00';
+
+	
     /**
      * @inheritdoc
      */
@@ -89,14 +94,18 @@ class ArtistPlanSearch extends ArtistPlan
      */
     public function searchActiveContinentYear($continent = false, $year = 2015)
     {
-        //$query = ArtistPlan::findByCondition(['show_status' => 1],false);
 		$query = ArtistPlan::find()->andWhere(['show_status' => 1]);
 		
+		$intervalStart = $year .'-01-01 00:00:00';
+		$intervalEnd = $year .'-12-31 00:00:00';
+		
 		if ($continent) {
-			$query = $query->andWhere(['continent' => $this->getContinentName($continent)])
-				->andWhere(['>=', 'start_date', $year .'-01-01 00:00:00'])
-				->andWhere(['<=', 'end_date', $year .'-12-31 00:00:00']);
+			$query = $query
+				->andWhere(['continent' => $this->getContinentName($continent)])
+				->andWhere(['between', 'start_date', self::$startOfTime, $intervalEnd])
+				->andWhere(['between', 'end_date', $intervalStart, self::$endOfTime]);
 		}
+		
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -110,16 +119,20 @@ class ArtistPlanSearch extends ArtistPlan
      *
      * @return ActiveDataProvider
      */
-    public function searchActiveContinent($continent = false, $year = 2015, $month = 1)
+    public function searchActiveContinentMonth($continent = false, $year = 2015, $month = 1)
     {
-        //$query = ArtistPlan::findByCondition(['show_status' => 1],false);
 		$query = ArtistPlan::find()->andWhere(['show_status' => 1]);
 		
+		$intervalStart = $year .'-' . $month . '-01 00:00:00';
+		$intervalEnd = $year .'-' . ($month+1) . '-01 00:00:00';
+		
 		if ($continent) {
-			$query = $query->andWhere(['continent' => $this->getContinentName($continent)])
-				->andWhere(['>=', 'start_date', $year .'-' . $month . '-01 00:00:00'])
-				->andWhere(['<=', 'end_date', $year .'-' . ($month+1) . '-01 00:00:00']);
+			$query = $query
+				->andWhere(['continent' => $this->getContinentName($continent)])
+				->andWhere(['between', 'start_date', self::$startOfTime, $intervalEnd])
+				->andWhere(['between', 'end_date', $intervalStart, self::$endOfTime]);
 		}
+		
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -133,12 +146,16 @@ class ArtistPlanSearch extends ArtistPlan
      *
      * @return ActiveDataProvider
      */
-    public function searchActiveWorld($year = 2015, $month = 1)
-    {
-        //$query = ArtistPlan::findByCondition(['show_status' => 1],false);
-		$query = ArtistPlan::find()->andWhere(['show_status' => 1])
-			->andWhere(['>=', 'start_date', $year .'-' . $month . '-01 00:00:00'])
-			->andWhere(['<=', 'end_date', $year .'-' . ($month+1) . '-01 00:00:00']);
+    public function searchActiveWorldMonth($year = 2015, $month = 1)
+    {	
+		
+		$intervalStart = $year .'-' . $month . '-01 00:00:00';
+		$intervalEnd = $year .'-' . ($month+1) . '-01 00:00:00';
+		
+		$query = ArtistPlan::find()
+				->andWhere(['show_status' => 1])
+				->andWhere(['between', 'start_date', self::$startOfTime, $intervalEnd])
+				->andWhere(['between', 'end_date', $intervalStart, self::$endOfTime]);
 		
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -155,10 +172,13 @@ class ArtistPlanSearch extends ArtistPlan
      */
     public function searchActiveWorldYear($year = 2015)
     {
-        //$query = ArtistPlan::findByCondition(['show_status' => 1],false);
-		$query = ArtistPlan::find()->andWhere(['show_status' => 1])
-			->andWhere(['>=', 'start_date', $year .'-01-01 00:00:00'])
-			->andWhere(['<=', 'end_date', $year .'-12-31 00:00:00']);
+        $intervalStart = $year .'-01-01 00:00:00';
+		$intervalEnd = $year .'-12-31 00:00:00';
+		
+		$query = ArtistPlan::find()
+				->andWhere(['show_status' => 1])
+				->andWhere(['between', 'start_date', self::$startOfTime, $intervalEnd])
+				->andWhere(['between', 'end_date', $intervalStart, self::$endOfTime]);
 		
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
