@@ -123,8 +123,8 @@ class ArtistPlanSearch extends ArtistPlan
     {
 		$query = ArtistPlan::find()->andWhere(['show_status' => 1]);
 		
-		$intervalStart = $year .'-' . $month . '-01 00:00:00';
-		$intervalEnd = $year .'-' . ($month+1) . '-01 00:00:00';
+		$intervalStart = $year .'-' . sprintf("%02d", $month) . '-01 00:00:00';
+		$intervalEnd = $year .'-' . sprintf("%02d", $month) . '-31 23:59:59';
 		
 		if ($continent) {
 			$query = $query
@@ -149,8 +149,8 @@ class ArtistPlanSearch extends ArtistPlan
     public function searchActiveWorldMonth($year = 2015, $month = 1)
     {	
 		
-		$intervalStart = $year .'-' . $month . '-01 00:00:00';
-		$intervalEnd = $year .'-' . ($month+1) . '-01 00:00:00';
+		$intervalStart = $year .'-' . sprintf("%02d", $month) . '-01 00:00:00';
+		$intervalEnd = $year .'-' . sprintf("%02d", $month) . '-31 23:59:59';
 		
 		$query = ArtistPlan::find()
 				->andWhere(['show_status' => 1])
