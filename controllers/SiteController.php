@@ -85,7 +85,7 @@ class SiteController extends Controller
 	private function generateLinks($prefix) {
 		$links = [];
 		
-		for($year = 2015; $year <= 2016; $year++) {
+		for($year = 2015; $year <= 2017; $year++) {
 			$links[$year] = [$prefix ,[]];
 			for($month = 1; $month <= 12; $month++) {
 				$monthName = date('F', mktime(0, 0, 0, $month, 1, 2000, 0));
