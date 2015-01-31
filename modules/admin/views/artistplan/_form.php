@@ -26,7 +26,8 @@ use app\models\Artist;
 	?>
 
 	<?= $form->field($model, 'city_id')->widget(Select2::classname(), [
-			'data' => array_merge(["" => ""], City::getAllCitiesList()),
+			//'data' => array_merge(["" => ""], City::getAllCitiesList()),
+			'data' => ["0" => "(not set)"] + City::getAllCitiesList(),
 			'attribute' => 'city_id',
 			'options' => ['placeholder' => 'Select a city...']
 		]);
