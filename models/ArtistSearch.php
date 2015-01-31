@@ -74,7 +74,7 @@ class ArtistSearch extends Artist
      */
     public function searchActive()
     {
-		$query = Artist::find()->andWhere(['show_status' => 1]);
+		$query = Artist::find()->andWhere(['show_status' => 1])->orderBy('show_order');
 		
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

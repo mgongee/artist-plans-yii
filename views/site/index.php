@@ -8,7 +8,7 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $headerLinks array */
 
-$this->title = 'GigsPlans.com future plans of Artists/Bands gigs in the world'; 
+$this->title = 'ArtistPlans.com future plans of Artists/Bands gigs in the world'; 
 $this->params['headerLinks'] = $headerLinks;
 ?>
 
