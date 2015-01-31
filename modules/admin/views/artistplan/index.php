@@ -25,8 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
             'name',
 			[
 				'class' => DataColumn::className(),
@@ -40,11 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
 				'format' => 'text',
 				'label' => 'City',
 			], //'city.name',
-            'continent',
-            // 'start_date',
-            // 'end_date',
-			['attribute' => 'show_status', 'value' => function ($data) {
-                return $data->getShowName(); 
+            ['label' => 'Dates', 'value' => function ($artistplan) {
+                return $artistplan->getDates('short'); 
+            }],
+			['attribute' => 'show_status', 'value' => function ($artistplan) {
+                return $artistplan->getShowName(); 
             }],
             ['class' => 'yii\grid\ActionColumn'],
         ],

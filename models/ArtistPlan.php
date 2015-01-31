@@ -97,12 +97,20 @@ class ArtistPlan extends \yii\db\ActiveRecord
      * Returns string describing start and end date of the artist plan
 	 * @return string
      */
-    public function getDates()
+    public function getDates($format = 'long')
     {
-		$dates = 'Starts ' . date("d M Y", strtotime($this->start_date));
-		
-		if ($this->end_date != '0000-00-00 00:00:00') {
-			$dates .= ', ends ' . date("d M Y", strtotime($this->end_date));
+		if ($format == 'short') {
+			$dates = date("d-M-Y", strtotime($this->start_date));
+			if ($this->end_date != '0000-00-00 00:00:00') {
+				$dates .= ' -> ' . date("d-M-Y", strtotime($this->end_date));
+			}
+		}
+		else {
+			$dates = 'Starts ' . date("d M Y", strtotime($this->start_date));
+
+			if ($this->end_date != '0000-00-00 00:00:00') {
+				$dates .= ', ends ' . date("d M Y", strtotime($this->end_date));
+			}
 		}
         return $dates;
     }
