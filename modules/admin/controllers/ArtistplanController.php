@@ -49,11 +49,13 @@ class ArtistplanController extends AdminDefaultController
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($id, $message = '', $error = false)
     {
 		$model = $this->findModel($id);
         return $this->render('view', [
             'model' => $model,
+			'message' => $message,
+			'error' => $error,
 			'genres' => Genre::makeViewArray($model->getGenres()->all())
         ]);
     }
@@ -96,7 +98,12 @@ class ArtistplanController extends AdminDefaultController
 		]);
 		
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect([
+				'view', 
+				'id' => $model->id,
+				'message' => 'Update successful',
+				'error' => false
+			]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -135,6 +142,30 @@ class ArtistplanController extends AdminDefaultController
     }
 
 
+	/**
+     * Copies genres list from Artist to Artist Plan
+     * If copying is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionCopygenres($id)
+    {
+        $model = $this->findModel($id);
+        if ($model->copyGenresFromArtist())
+			return $this->redirect([
+				'view', 
+				'id' => $model->id,
+				'message' => 'Genres successfully copied',
+				'error' => false
+			]);
+		else
+			return $this->redirect([
+				'view', 
+				'id' => $model->id,
+				'message' => 'Copying failed due to unknown reason',
+				'error' => true
+			]);
+    }
 	
     /**
      * Deletes an existing ArtistPlan model.

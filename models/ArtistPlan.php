@@ -158,4 +158,22 @@ class ArtistPlan extends \yii\db\ActiveRecord
 		}
 		return $modelChanged;
 	}
+	
+	/** 
+	 * Copies genres list from Artist to Artist Plan
+	 */
+	public function copyGenresFromArtist() {
+		$modelChanged = false;
+		$artist = $this->getArtist()->one();
+		$genres = $artist->getGenres()->all();
+		
+		foreach ($genres as $genre) {
+			$artistgenre = new ArtistplanToGenre();
+			$artistgenre->artistplan_id = $this->id;
+			$artistgenre->genre_id = $genre->id;
+			$artistgenre->save();
+			$modelChanged = true;
+		}
+		return $modelChanged;
+	}
 }

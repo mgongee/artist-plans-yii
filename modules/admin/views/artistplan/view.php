@@ -5,6 +5,7 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ArtistPlan */
+/* @var $message string */
 /* @var $genres string */
 
 $this->title = $model->name;
@@ -12,11 +13,18 @@ $this->params['breadcrumbs'][] = ['label' => 'Artist Plans', 'url' => ['index']]
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="artist-plan-view">
-
+	
+	<?php if ($message) : ?>
+	<div class="alert alert-<?=($error ? 'danger' : 'success') ?>">
+		<?=$message;?>
+	</div>
+	<?php endif; ?>
+	
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+		<?= Html::a('Copy genres from Artist', ['copygenres', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a('Edit genres', ['editgenres', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
