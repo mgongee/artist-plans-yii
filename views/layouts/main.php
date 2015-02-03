@@ -59,12 +59,12 @@ AppAsset::register($this);
 						<select style="font-size:36px;color:#006699;font-family:Roboto Condensed;background-color:#FFFF99;" 
 								name="menu" onChange="location=document.form4.menu.options[document.form4.menu.selectedIndex].value;">
 							<option value=''>Select Other Continent</option>
-							<option value="/africa/2015">Africa</option>
-							<option value="/asia/2015">Asia</option>
-							<option value="/australia/2015">Australia</option>
-							<option value="/europe/2015">Europe</option>
-							<option value="/northamerica/2015">North America</option>
-							<option value="/southamerica/2015">South America</option>
+							<option value="/africa">Africa</option>
+							<option value="/asia">Asia</option>
+							<option value="/australia">Australia</option>
+							<option value="/europe">Europe</option>
+							<option value="/northamerica">North America</option>
+							<option value="/southamerica">South America</option>
 						</select>
 					</form>
 				</td>
