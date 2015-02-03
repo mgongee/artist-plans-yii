@@ -110,6 +110,38 @@ class SiteController extends Controller
 			'dataProvider' => $dataProvider
 		]);
     }
+	
+	
+    public function actionArtist()
+	{
+		$get = Yii::$app->request->queryParams;
+		if (isset($get['route'])) {
+			$route = strtolower($get['route']);
+			switch ($route) {
+				case 'asia':
+				case 'africa':
+				case 'australia':
+				case 'europe':
+				case 'southamerica':
+				case 'northamerica':
+					return $this->actionArtistContinent(ucfirst($route));
+			}
+		}
+		return $this->actionWorldYear();
+	}
+	
+	public function actionArtistContinent($continent) {
+		
+		$searchModel = new ArtistSearch();
+		$dataProvider = $searchModel->searchActiveContinent($continent);
+
+		return $this->render('artist', [
+			'headerLinks' => $this->generateLinks('world'),
+			'continent' => $continent,
+			'searchModel' => $searchModel,
+			'dataProvider' => $dataProvider
+		]);
+    }
 
     public function actionLogin()
     {

@@ -82,4 +82,36 @@ class ArtistSearch extends Artist
 
         return $dataProvider;
     }
+	
+	
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @return ActiveDataProvider
+     */
+    public function searchActiveContinent($continent)
+    {
+		$connection = \Yii::$app->db; 
+		$sql = 'SELECT artist.id AS id FROM `artist` AS artist
+inner join `city` AS city ON artist.city_id = city.id
+inner join `country` AS cy ON city.country_code = cy.code
+inner join `continent` AS ct ON cy.continent_code = ct.code
+WHERE ct.name = :continent';
+		$command = $connection->createCommand($sql); 
+		$command->bindValue(':continent', $continent); 
+		$ids = $command->queryColumn();
+
+		$query = Artist::find()
+			->andWhere([
+				'show_status' => 1,
+				'id' => $ids
+			])
+			->orderBy('show_order');
+		
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        return $dataProvider;
+    }
 }

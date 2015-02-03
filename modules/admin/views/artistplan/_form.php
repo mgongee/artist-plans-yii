@@ -34,7 +34,7 @@ use app\models\Artist;
 	?>
 
 
-    <?= $form->field($model, 'continent')->dropDownList([ 'Asia' => 'Asia', 'Europe' => 'Europe', 'North America' => 'North America', 'Africa' => 'Africa', 'Oceania' => 'Oceania', 'Antarctica' => 'Antarctica', 'South America' => 'South America', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'continent')->dropDownList([ 'Asia' => 'Asia', 'Australia' => 'Australia', 'Europe' => 'Europe', 'North America' => 'North America', 'Africa' => 'Africa', 'Oceania' => 'Oceania', 'Antarctica' => 'Antarctica', 'South America' => 'South America']) ?>
 
     <?= $form->field($model, 'start_date')->widget(DatePicker::classname(), [
 			'options' => ['placeholder' => 'Enter start date ...'],
