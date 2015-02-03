@@ -38,6 +38,8 @@ use app\models\City;
 
 	<?= $form->field($model, 'show_order')->textInput(['maxlength' => 15]) ?>
 	
+	<?= $form->field($model, 'tour_info')->textarea(['rows' => 6]) ?>
+	
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

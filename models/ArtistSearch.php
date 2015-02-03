@@ -18,8 +18,8 @@ class ArtistSearch extends Artist
     public function rules()
     {
         return [
-            [['id', 'city_id', 'celebrity_status', 'order', 'show'], 'integer'],
-            [['name', 'website_url', 'picture_url'], 'safe'],
+            [['id', 'city_id', 'celebrity_status', 'show_order', 'show_status'], 'integer'],
+            [['name', 'website_url', 'picture_url', 'tour_info'], 'safe'],
         ];
     }
 
@@ -61,7 +61,8 @@ class ArtistSearch extends Artist
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'website_url', $this->website_url])
-            ->andFilterWhere(['like', 'picture_url', $this->picture_url]);
+            ->andFilterWhere(['like', 'picture_url', $this->picture_url])
+			->andFilterWhere(['like', 'tour_info', $this->tour_info]);
 
         return $dataProvider;
     }
@@ -75,6 +76,23 @@ class ArtistSearch extends Artist
     public function searchActive()
     {
 		$query = Artist::find()->andWhere(['show_status' => 1])->orderBy('show_order');
+		
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        return $dataProvider;
+    }
+	
+	
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @return ActiveDataProvider
+     */
+    public function searchByOrder()
+    {
+		$query = Artist::find()->orderBy('show_order');
 		
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

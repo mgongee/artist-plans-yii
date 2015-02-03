@@ -27,16 +27,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'city.name',
-            'website_url:url',
-            'picture_url:url',
+            ['attribute' => 'city.name', 'label' => 'City'],
 			['attribute' => 'celebrity_status', 'value' => function ($data) {
                 return $data->getStatusName(); 
             }],//$model->getStatusName()],
+			'show_order',
 			['attribute' => 'show_status', 'value' => function ($data) {
                 return $data->getShowName(); 
             }],
-
+			'tour_info:ntext',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

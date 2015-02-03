@@ -36,7 +36,8 @@ class ArtistController extends AdminDefaultController
     public function actionIndex()
     {
         $searchModel = new ArtistSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$dataProvider = $searchModel->searchByOrder();
 		
         return $this->render('index', [
             'searchModel' => $searchModel,
