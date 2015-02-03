@@ -23,8 +23,8 @@ AppAsset::register($this);
 		<link href='http://fonts.googleapis.com/css?family=Tangerine|Roboto+Condensed' rel='stylesheet' type='text/css'>
 		<link rel="shortcut icon" href="http://callu.net/favicon.ico">
 		<META NAME="robots" content="index,follow">
-		<META NAME="description" CONTENT="GigsPlans shows you Artists/Bands plans for the future in the world">
-		<META NAME="keywords" CONTENT="gigsplans,gig,plannings,booker,broker,Bookings,Worldwide,Artist,celebrity,booking,book,hire,band,musician, Artistguide,coperate entertainment,agency,private parties,fairs,festivals,radio events,promotions,corporate events,world,wide,concerts,special events,festivals,trade shows,fund raisers,boking">
+		<META NAME="description" CONTENT="ArtistPlans shows Artists/Bands plans for the future in the world">
+		<META NAME="keywords" CONTENT="artistplans,gig,plannings,booker,broker,Bookings,Worldwide,Artist,celebrity,booking,book,hire,band,musician, Artistguide,coperate entertainment,agency,private parties,fairs,festivals,radio events,promotions,corporate events,world,wide,concerts,special events,festivals,trade shows,fund raisers,boking">
 		
 		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 		<script type="text/javascript">stLight.options({publisher:'8e4be83b-97eb-4093-8ad3-bbf2fb21a722'});</script>
@@ -54,7 +54,7 @@ AppAsset::register($this);
 		<table border="0">
 			<tr align="left" valign="top">            
 				<td width="960" valign="top" align="center">
-					<p style="font-family:Roboto Condensed;font-size:260%;color:FFFFFF">Worldwide April 2015 <span class="st_sharethis_button" displayText="ShareThis"></span></p>
+					
 					<form name="form4">
 						<select style="font-size:36px;color:#006699;font-family:Roboto Condensed;background-color:#FFFF99;" 
 								name="menu" onChange="location=document.form4.menu.options[document.form4.menu.selectedIndex].value;">
@@ -134,17 +134,9 @@ AppAsset::register($this);
     </div>
     <footer class="footer">
         <div class="container">
-			<p>
-				<a href="http://www.gigsplans.com/contact.html" title="Contact us here, one of our staff will call you back within 15 minutes" Target="_blank">Contact</a>
-			</p>
-			<p style="font-family:Roboto Condensed;font-size:100%;color:000000">
-				Powered by <a href="http://www.callu.net/" title="Intelligent booking assistance service, one of our staff will call you back within 15 minutes" Target="_blank"><img src="http://www.callu.net/im/callyounetv102x24.png" width="102" height="24" alt="Worldwide booker broker for Artists/Bands"></a> Unique Visitors Worldwide Worldbooking.net Follow us <a href="http://www.twitter.com/artistguide" TARGET="_blank" title="FOLLOW US ON TWITTER"><img src="http://www.callu.net/im/twitterv103x24.png" width="103" height="24" alt="WELCOME TO OUR TWITTER"></a>&nbsp;<a href="https://www.facebook.com/Callyounetcom" TARGET="_blank" title="CallYouNet Worldbooking.net FACEBOOK">
-				<img src="http://www.callu.net/im/facebookv112x24.png" width="112" height="24" alt="ON FACEBOOK">
-			</a>
-			</p>
-			<img src="http://flagcounter.com/count/DWJy/bg=FFFFFF/txt=000000/border=FFFFFF/columns=8/maxflags=24/viewers=3/labels=1/" alt="free counters" border="0">
-
+					
             <p class="pull-left">&copy; ArtistPlans.com <?= date('Y') ?></p>
+		&nbsp;&nbsp;&nbsp; <a href="http://www.callu.net/gigsplans/contact.html" title="Contact us here, one of our staff will call you back within 15 minutes" Target="_blank">Contact</a>&nbsp;&nbsp;<a href="http://www.callu.net/" title="Intelligent booking assistance service, one of our staff will call you back within 15 minutes" Target="_blank"><img src="http://www.callu.net/im/callyounetv102x24.png" width="102" height="24" alt="Worldwide booker broker for Artists/Bands"></a> <a href="http://www.twitter.com/artistguide" TARGET="_blank" title="FOLLOW US ON TWITTER"><img src="http://www.callu.net/im/twitterv103x24.png" width="103" height="24" alt="WELCOME TO OUR TWITTER"></a>&nbsp;<a href="https://www.facebook.com/Callyounetcom" TARGET="_blank" title="CallYouNet Worldbooking.net FACEBOOK"><img src="http://www.callu.net/im/facebookv112x24.png" width="112" height="24" alt="ON FACEBOOK"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  * Artist Plans are subject to change!
             <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
     </footer>
