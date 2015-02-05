@@ -65,6 +65,7 @@ AppAsset::register($this);
 							<option value="/europe">Europe</option>
 							<option value="/northamerica">North America</option>
 							<option value="/southamerica">South America</option>
+							<option value="/world">World Celebrities</option>
 						</select>
 					</form>
 				</td>

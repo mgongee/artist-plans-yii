@@ -150,4 +150,21 @@ WHERE ct.name = :continent';
 
         return $dataProvider;
     }
+	
+	    /**
+     * Creates data provider instance with search query applied
+     *
+     * @return ActiveDataProvider
+     */
+    public function searchActiveCelebrities()
+    {	
+		$query = Artist::find()->andWhere(['show_status' => 1, 'celebrity_status' => 1])->orderBy('show_order');
+		
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        return $dataProvider;
+    }
+	
 }

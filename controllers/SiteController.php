@@ -125,6 +125,8 @@ class SiteController extends Controller
 				case 'southamerica':
 				case 'northamerica':
 					return $this->actionArtistContinent(ucfirst($route));
+				case 'world':
+					return $this->actionArtistCelebritiesWorld();
 			}
 		}
 		return $this->actionArtistplansWorldYear();
@@ -138,6 +140,20 @@ class SiteController extends Controller
 		return $this->render('artist', [
 			'headerLinks' => $this->generateLinks(strtolower($continent)),
 			'continent' => $continent,
+			'searchModel' => $searchModel,
+			'dataProvider' => $dataProvider
+		]);
+    }
+	
+	
+	public function actionArtistCelebritiesWorld() {
+		
+		$searchModel = new ArtistSearch();
+		$dataProvider = $searchModel->searchActiveCelebrities();
+
+		return $this->render('artist', [
+			'headerLinks' => $this->generateLinks('world'),
+			'continent' => 'World',
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider
 		]);
