@@ -79,6 +79,7 @@ class ArtistPlanSearch extends ArtistPlan
 			'northamerica' => 'North America',
 			'africa' => 'Africa', 
 			'oceania' => 'Oceania', 
+			'australia' => 'Australia', 
 			'antarctica' => 'Antarctica', 
 			'southamerica' => 'South America'
 		];

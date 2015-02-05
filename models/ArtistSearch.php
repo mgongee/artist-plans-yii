@@ -101,6 +101,22 @@ class ArtistSearch extends Artist
         return $dataProvider;
     }
 	
+	public function getContinentName($continent) {
+		$continent = strtolower($continent);
+		$continents = [
+			'asia' => 'Asia',
+			'europe' => 'Europe',
+			'northamerica' => 'North America',
+			'africa' => 'Africa', 
+			'oceania' => 'Oceania', 
+			'australia' => 'Australia', 
+			'antarctica' => 'Antarctica', 
+			'southamerica' => 'South America'
+		];
+		if (array_key_exists($continent, $continents)) return $continents[$continent];
+		return $continent;
+	}
+
 	
     /**
      * Creates data provider instance with search query applied
@@ -109,6 +125,8 @@ class ArtistSearch extends Artist
      */
     public function searchActiveContinent($continent)
     {
+		$continent = $this->getContinentName($continent);
+		
 		$connection = \Yii::$app->db; 
 		$sql = 'SELECT artist.id AS id FROM `artist` AS artist
 inner join `city` AS city ON artist.city_id = city.id

@@ -127,7 +127,7 @@ class SiteController extends Controller
 					return $this->actionArtistContinent(ucfirst($route));
 			}
 		}
-		return $this->actionWorldYear();
+		return $this->actionArtistplansWorldYear();
 	}
 	
 	public function actionArtistContinent($continent) {
@@ -136,7 +136,7 @@ class SiteController extends Controller
 		$dataProvider = $searchModel->searchActiveContinent($continent);
 
 		return $this->render('artist', [
-			'headerLinks' => $this->generateLinks('world'),
+			'headerLinks' => $this->generateLinks(strtolower($continent)),
 			'continent' => $continent,
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider
@@ -200,13 +200,13 @@ class SiteController extends Controller
 				case 'europe':
 				case 'southamerica':
 				case 'northamerica':
-					return $this->actionContinentMonth(ucfirst($get['route']));
+					return $this->actionArtistplansContinentMonth(ucfirst($get['route']));
 				case 'world':
-					return $this->actionWorldMonth();
+					return $this->actionArtistplansWorldMonth();
 			}
 		}
 		else {
-			return $this->actionWorldyear();
+			return $this->actionArtistplansWorldYear();
 		}
 	}
 	
@@ -220,17 +220,17 @@ class SiteController extends Controller
 				case 'europe':
 				case 'southamerica':
 				case 'northamerica':
-					return $this->actionContinentYear(ucfirst($get['route']));
+					return $this->actionArtistplansContinentYear(ucfirst($get['route']));
 				case 'world':
-					return $this->actionWorldYear();
+					return $this->actionArtistplansWorldYear();
 			}
 		}
 		else {
-			return $this->actionWorldYear();
+			return $this->actionArtistplansWorldYear();
 		}
 	}
 	
-	public function actionWorldYear() {
+	public function actionArtistplansWorldYear() {
 		$get = Yii::$app->request->queryParams;
 		$year = isset($get['year']) ? intval($get['year']) : 2015;
 		
@@ -245,7 +245,7 @@ class SiteController extends Controller
         ]);	
 	}
 	
-	public function actionWorldMonth()
+	public function actionArtistplansWorldMonth()
     {
 		$get = Yii::$app->request->queryParams;
 		$year = isset($get['year']) ? intval($get['year']) : 2015;
@@ -263,11 +263,11 @@ class SiteController extends Controller
 			]);
 		}
 		else {
-			return $this->actionWorldyear();
+			return $this->actionArtistplansWorldyear();
 		}
     }
 	
-	private function actionContinentMonth($continent)
+	private function actionArtistplansContinentMonth($continent)
     {
 		$get = Yii::$app->request->queryParams;
 		$year = isset($get['year']) ? intval($get['year']) : 2015;
@@ -286,7 +286,7 @@ class SiteController extends Controller
         ]);
     }
 	
-	private function actionContinentYear($continent)
+	private function actionArtistplansContinentYear($continent)
     {
 		$get = Yii::$app->request->queryParams;
 		$year = isset($get['year']) ? intval($get['year']) : 2015;
