@@ -35,22 +35,20 @@ $this->params['headerLinks'] = $headerLinks;
 				$cityName = $artist->getCityName();
 				$genresList = $artist->getGenresList();
 
-				$html = '<h3>' . $artistplan->name . '</h3>' 
+				$html = '<h3>' . Html::a($artist->website_url, $linkUrl, ['target' => '_blank']) . '</h3>' 
 					. 'Artist: <strong>' . $artist->name . '</strong>'
-					. '<br>' . $artistplan->getDates()
-					. '<br>' . Html::a($artist->website_url, $linkUrl, ['target' => '_blank']);
+					. '<br>' . $artistplan->getDates();
 
 				if ($genresList) {
 					$html .= '<br>Genres: <i>' . $genresList . '</i>';
 				}
 				
+				$html .= '<br>Tour name: <i>' . $artistplan->name . '</i>';
+				
 				if ($cityName) {
 					$html .= '<br>City: <i>' . $cityName . '</i>';
 				}
 
-				if ($artist->tour_info) {
-					$html .= '<br>Tour info: <br>' . $artist->tour_info. '';
-				}
 				return $html;
 
 			},
