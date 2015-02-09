@@ -139,7 +139,7 @@ class SiteController extends Controller
 
 		return $this->render('artist', [
 			'headerLinks' => $this->generateLinks(strtolower($continent)),
-			'continent' => $continent,
+			'continent' => $searchModel->getContinentName($continent),
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider
 		]);

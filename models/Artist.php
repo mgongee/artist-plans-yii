@@ -99,6 +99,18 @@ class Artist extends \yii\db\ActiveRecord
 			->viaTable('artist_to_genre', ['artist_id' => 'id']);
     }
 	
+	
+	
+    /**
+     * Finds city name
+     * @return string
+     */
+    public function getCityName()
+    {
+		$city = $this->getCity()->one();
+		return is_object($city) ? $city->name : false;
+    }
+	
 	/**
 	 * Generates a HTML list of genres
      * @return string
