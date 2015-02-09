@@ -4,6 +4,7 @@ namespace app\modules\admin\controllers;
 
 use Yii;
 use app\models\Artist;
+use app\models\ArtistPlan;
 use app\models\ArtistSearch;
 use app\models\ArtistToGenre;
 use app\models\Genre;
@@ -141,6 +142,7 @@ class ArtistController extends AdminDefaultController
      */
     public function actionDelete($id)
     {
+		ArtistPlan::deleteAll('artist_id = ' . intval($id));
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
