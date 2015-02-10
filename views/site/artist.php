@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /* @var $headerLinks array */
 /* @var $continent string */
 
-$this->title = "Artists at $continent"; 
+$this->title = "Artists of $continent"; 
 $this->params['headerLinks'] = $headerLinks;
 ?>
 

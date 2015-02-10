@@ -100,9 +100,13 @@ AppAsset::register($this);
             ]);
 			
 			$items = [
-                    ['label' => 'Home', 'url' => ['/site/index']],
-                    ['label' => 'About', 'url' => ['/site/about']],		
-                   // ['label' => 'Contact', 'url' => ['/site/contact']]
+				['label' => 'Artists', 'url' => ['/admin/artist']],	
+				['label' => 'Artist plans', 'url' => ['/admin/artistplan']],	
+				['label' => 'Genres', 'url' => ['/admin/genre']],	
+				['label' => 'Cities', 'url' => ['/admin/city']],	
+				['label' => 'Countries', 'url' => ['/admin/country']],	
+			   // ['label' => 'About', 'url' => ['/site/about']],	
+			   // ['label' => 'Contact', 'url' => ['/site/contact']]
 			];
 			
 			if (!Yii::$app->user->isGuest) {

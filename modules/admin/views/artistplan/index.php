@@ -31,7 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
 				'attribute' => 'artist.name',
 				'format' => 'text',
 				'label' => 'Artist',
-			], //'artist.name',
+			], 
+			'continent',
             [
 				'class' => DataColumn::className(),
 				'attribute' => 'city.name',

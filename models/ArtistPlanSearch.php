@@ -147,14 +147,23 @@ class ArtistPlanSearch extends ArtistPlan
      *
      * @return ActiveDataProvider
      */
-    public function searchActiveWorldMonth($year = 2015, $month = 1)
+    public function searchActiveCelebritiesWorldMonth($year = 2015, $month = 1)
     {	
 		
 		$intervalStart = $year .'-' . sprintf("%02d", $month) . '-01 00:00:00';
 		$intervalEnd = $year .'-' . sprintf("%02d", $month) . '-31 23:59:59';
+		$artistSearchModel = new ArtistSearch();
+		$activeCelebrities = $artistSearchModel->searchActiveCelebrities()->getModels();
+		
+		$artistIds = array();
+		
+		foreach ($activeCelebrities as $celebrity) {
+			$artistIds[] = $celebrity->id;
+		}
 		
 		$query = ArtistPlan::find()
 				->andWhere(['show_status' => 1])
+				->andWhere(['in', 'artist_id', $artistIds])
 				->andWhere(['between', 'start_date', self::$startOfTime, $intervalEnd])
 				->andWhere(['between', 'end_date', $intervalStart, self::$endOfTime]);
 		
@@ -171,13 +180,22 @@ class ArtistPlanSearch extends ArtistPlan
      *
      * @return ActiveDataProvider
      */
-    public function searchActiveWorldYear($year = 2015)
+    public function searchActiveCelebritiesWorldYear($year = 2015)
     {
         $intervalStart = $year .'-01-01 00:00:00';
 		$intervalEnd = $year .'-12-31 00:00:00';
+		$artistSearchModel = new ArtistSearch();
+		$activeCelebrities = $artistSearchModel->searchActiveCelebrities()->getModels();
+		
+		$artistIds = array();
+		
+		foreach ($activeCelebrities as $celebrity) {
+			$artistIds[] = $celebrity->id;
+		}
 		
 		$query = ArtistPlan::find()
 				->andWhere(['show_status' => 1])
+				->andWhere(['in', 'artist_id', $artistIds])
 				->andWhere(['between', 'start_date', self::$startOfTime, $intervalEnd])
 				->andWhere(['between', 'end_date', $intervalStart, self::$endOfTime]);
 		

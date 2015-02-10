@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use app\helpers\Misc;
 use yii\grid\GridView;
 use yii\grid\DataColumn;
 
@@ -9,7 +10,7 @@ use yii\grid\DataColumn;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $headerLinks array */
 
-$this->title = "World Artist plans at $month $year"; 
+$this->title = "World Artist plans to be in $month $year"; 
 $this->params['headerLinks'] = $headerLinks;
 ?>
 
@@ -17,28 +18,45 @@ $this->params['headerLinks'] = $headerLinks;
 
     <h1><?= Html::encode($this->title) ?></h1>
     
+
 <?= GridView::widget([
 	'layout' => '{items}',
 	'filterModel' => null,
 	'dataProvider' => $dataProvider,
 	'columns' => [
-		'name',
+		// Tour name, Artist name, Start - End, Genres, City
 		[
-			'class' => DataColumn::className(),
-			'attribute' => 'artist.name',
-			'format' => 'text',
-			'label' => 'Artist',
-		], //'artist.name',
-		[
-			'class' => DataColumn::className(),
-			'attribute' => 'city.name',
-			'format' => 'text',
-			'label' => 'City',
-		], //'city.name',
-		'continent',
-		['attribute' => 'start_date', 'value' => function ($data) {
-			return $data->getDates(); 
-		}]//'start_date', 'end_date'
+			'format' => 'raw',
+			'value' => function($artistplan) {
+				$artist = $artistplan->getArtist()->one();
+				$linkUrl = Misc::addScheme($artist->website_url);
+				$cityName = $artist->getCityName();
+				$genresList = $artist->getGenresList();
+
+				$html = '<h3>' . Html::a($artist->website_url, $linkUrl, ['target' => '_blank']) . '</h3>' 
+					. 'Artist: <strong>' . $artist->name . '</strong>'
+					. '<br>' . $artistplan->getDates();
+
+				if ($genresList) {
+					$html .= '<br>Genres: <i>' . $genresList . '</i>';
+				}
+				
+				$html .= '<br>Tour name: <i>' . $artistplan->name . '</i>';
+				
+				if ($cityName) {
+					$html .= '<br>City: <i>' . $cityName . '</i>';
+				}
+				
+				return $html;
+
+			},
+			'label' => 'Tour'
+		],
+		[  // Picture
+			'attribute' => 'artist.picture_url',
+			'format' => 'raw',
+			'label' => ''
+		]
 	],
 ]); ?>
 

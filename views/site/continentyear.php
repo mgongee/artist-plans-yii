@@ -13,7 +13,7 @@ use yii\grid\DataColumn;
 /* @var $month string */
 /* @var $year string */
 
-$this->title = "Artist plans at $continent, $year"; 
+$this->title = "Artist plans to be in $continent, $year"; 
 $this->params['headerLinks'] = $headerLinks;
 ?>
 
@@ -35,7 +35,7 @@ $this->params['headerLinks'] = $headerLinks;
 				$cityName = $artist->getCityName();
 				$genresList = $artist->getGenresList();
 
-			$html = '<h3>' . Html::a($artist->website_url, $linkUrl, ['target' => '_blank']) . '</h3>' 
+				$html = '<h3>' . Html::a($artist->website_url, $linkUrl, ['target' => '_blank']) . '</h3>' 
 					. 'Artist: <strong>' . $artist->name . '</strong>'
 					. '<br>' . $artistplan->getDates();
 

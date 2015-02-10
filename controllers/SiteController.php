@@ -111,7 +111,10 @@ class SiteController extends Controller
 		]);
     }
 	
-	
+	/**
+	 * Route:
+	 * '<route:\w+>' => 'site/artist',
+	 */
     public function actionArtist()
 	{
 		$get = Yii::$app->request->queryParams;
@@ -205,7 +208,12 @@ class SiteController extends Controller
 	{
 		return $this->render('say', ['message' => $message]);
 	}
-	
+		
+	/**
+	 * Routes:
+	 * '<route:\w+>/<year:\d+>/<month:\d+>' => 'site/artistplans',
+	 * '<route:\w+>/<year:\d+>/<month:\w+>' => 'site/artistplans'
+	 */
 	public function actionArtistplans() {
 		$get = Yii::$app->request->queryParams;
 		if (isset($get['route'])) {
@@ -226,6 +234,10 @@ class SiteController extends Controller
 		}
 	}
 	
+	/**
+	 * Route:
+	 * '<route:\w+>/<year:\d+>' => 'site/artistplansforyear',
+	 */
 	public function actionArtistplansforyear() {
 	$get = Yii::$app->request->queryParams;
 		if (isset($get['route'])) {
@@ -251,7 +263,7 @@ class SiteController extends Controller
 		$year = isset($get['year']) ? intval($get['year']) : 2015;
 		
 		$searchModel = new ArtistPlanSearch();
-		$dataProvider = $searchModel->searchActiveWorldYear($year);
+		$dataProvider = $searchModel->searchActiveCelebritiesWorldYear($year);
 
         return $this->render('worldyear', [
 			'headerLinks' => $this->generateLinks('world'),
@@ -268,7 +280,7 @@ class SiteController extends Controller
 		if (isset($get['month'])) {
 			$month = $this->parseMonth($get['month']);
 			$searchModel = new ArtistPlanSearch();
-			$dataProvider = $searchModel->searchActiveWorldMonth($year, $month);
+			$dataProvider = $searchModel->searchActiveCelebritiesWorldMonth($year, $month);
 
 			return $this->render('world', [
 				'headerLinks' => $this->generateLinks('world'),

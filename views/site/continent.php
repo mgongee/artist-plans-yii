@@ -13,7 +13,7 @@ use yii\grid\DataColumn;
 /* @var $month string */
 /* @var $year string */
 
-$this->title = "Artist plans at $continent, $month $year"; 
+$this->title = "Artist plans to be in $continent, $month $year"; 
 $this->params['headerLinks'] = $headerLinks;
 ?>
 
