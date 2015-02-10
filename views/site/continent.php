@@ -46,7 +46,7 @@ $this->params['headerLinks'] = $headerLinks;
 				$html .= '<br>Tour name: <i>' . $artistplan->name . '</i>';
 				
 				if ($cityName) {
-					$html .= '<br>City: <i>' . $cityName . '</i>';
+					$html .= '<br>HomeTown: <i>' . $cityName . '</i>';
 				}
 
 				return $html;

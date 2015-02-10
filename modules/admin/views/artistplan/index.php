@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'class' => DataColumn::className(),
 				'attribute' => 'city.name',
 				'format' => 'text',
-				'label' => 'City',
+				'label' => 'HomeTown',
 			], //'city.name',
             ['label' => 'Dates', 'value' => function ($artistplan) {
                 return $artistplan->getDates('short'); 

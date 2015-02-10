@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\ArtistPlan;
@@ -94,18 +93,25 @@ class ArtistPlanSearch extends ArtistPlan
      * @return ActiveDataProvider
      */
     public function searchActiveContinentYear($continent = false, $year = 2015)
-    {
-		$query = ArtistPlan::find()->andWhere(['show_status' => 1]);
-		
+    {		
 		$intervalStart = $year .'-01-01 00:00:00';
 		$intervalEnd = $year .'-12-31 00:00:00';
+
+
+		// artist plans sorted by artist order	
+		$query = ArtistPlan::find()->innerJoin('artist', 'artistplan.artist_id = artist.id')
+			->where('artistplan.show_status = :status') 
+			->andWhere(['between', 'start_date', self::$startOfTime, $intervalEnd])
+			->andWhere(['between', 'end_date', $intervalStart, self::$endOfTime]);
+		
+		$query->addParams([':status' => 1]); 
 		
 		if ($continent) {
-			$query = $query
-				->andWhere(['continent' => $this->getContinentName($continent)])
-				->andWhere(['between', 'start_date', self::$startOfTime, $intervalEnd])
-				->andWhere(['between', 'end_date', $intervalStart, self::$endOfTime]);
+			$query->andWhere("continent = :continent");
+			$query->addParams([':continent' => $this->getContinentName($continent)]); 
 		}
+		
+		$query->orderBy(["artist.show_order" => SORT_ASC]);
 		
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -122,17 +128,23 @@ class ArtistPlanSearch extends ArtistPlan
      */
     public function searchActiveContinentMonth($continent = false, $year = 2015, $month = 1)
     {
-		$query = ArtistPlan::find()->andWhere(['show_status' => 1]);
-		
+
 		$intervalStart = $year .'-' . sprintf("%02d", $month) . '-01 00:00:00';
 		$intervalEnd = $year .'-' . sprintf("%02d", $month) . '-31 23:59:59';
 		
+		$query = ArtistPlan::find()->innerJoin('artist', 'artistplan.artist_id = artist.id')
+			->where('artistplan.show_status = :status') 
+			->andWhere(['between', 'start_date', self::$startOfTime, $intervalEnd])
+			->andWhere(['between', 'end_date', $intervalStart, self::$endOfTime]);
+		
+		$query->addParams([':status' => 1]); 
+		
 		if ($continent) {
-			$query = $query
-				->andWhere(['continent' => $this->getContinentName($continent)])
-				->andWhere(['between', 'start_date', self::$startOfTime, $intervalEnd])
-				->andWhere(['between', 'end_date', $intervalStart, self::$endOfTime]);
+			$query->andWhere("continent = :continent");
+			$query->addParams([':continent' => $this->getContinentName($continent)]); 
 		}
+		
+		$query->orderBy(["artist.show_order" => SORT_ASC]);
 		
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -162,11 +174,13 @@ class ArtistPlanSearch extends ArtistPlan
 		}
 		
 		$query = ArtistPlan::find()
-				->andWhere(['show_status' => 1])
-				->andWhere(['in', 'artist_id', $artistIds])
-				->andWhere(['between', 'start_date', self::$startOfTime, $intervalEnd])
-				->andWhere(['between', 'end_date', $intervalStart, self::$endOfTime]);
-		
+			->innerJoin('artist', 'artistplan.artist_id = artist.id')
+			->andWhere(['show_status' => 1])
+			->andWhere(['in', 'artist_id', $artistIds])
+			->andWhere(['between', 'start_date', self::$startOfTime, $intervalEnd])
+			->andWhere(['between', 'end_date', $intervalStart, self::$endOfTime])
+			->orderBy(["artist.show_order" => SORT_ASC]);
+			
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -194,10 +208,11 @@ class ArtistPlanSearch extends ArtistPlan
 		}
 		
 		$query = ArtistPlan::find()
-				->andWhere(['show_status' => 1])
-				->andWhere(['in', 'artist_id', $artistIds])
-				->andWhere(['between', 'start_date', self::$startOfTime, $intervalEnd])
-				->andWhere(['between', 'end_date', $intervalStart, self::$endOfTime]);
+			->andWhere(['show_status' => 1])
+			->andWhere(['in', 'artist_id', $artistIds])
+			->andWhere(['between', 'start_date', self::$startOfTime, $intervalEnd])
+			->andWhere(['between', 'end_date', $intervalStart, self::$endOfTime])
+			->orderBy(["artist.show_order" => SORT_ASC]);
 		
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
