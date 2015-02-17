@@ -164,23 +164,16 @@ class ArtistPlanSearch extends ArtistPlan
 		
 		$intervalStart = $year .'-' . sprintf("%02d", $month) . '-01 00:00:00';
 		$intervalEnd = $year .'-' . sprintf("%02d", $month) . '-31 23:59:59';
-		$artistSearchModel = new ArtistSearch();
-		$activeCelebrities = $artistSearchModel->searchActiveCelebrities()->getModels();
-		
-		$artistIds = array();
-		
-		foreach ($activeCelebrities as $celebrity) {
-			$artistIds[] = $celebrity->id;
-		}
 		
 		$query = ArtistPlan::find()
 			->innerJoin('artist', 'artistplan.artist_id = artist.id')
-			->andWhere(['show_status' => 1])
-			->andWhere(['in', 'artist_id', $artistIds])
+			->andWhere(['artistplan.show_status' => 1])
+			->andWhere(['artist.show_status' => 1])
+			->andWhere(['artist.celebrity_status' => 1])
 			->andWhere(['between', 'start_date', self::$startOfTime, $intervalEnd])
 			->andWhere(['between', 'end_date', $intervalStart, self::$endOfTime])
 			->orderBy(["artist.show_order" => SORT_ASC]);
-			
+		
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -198,18 +191,12 @@ class ArtistPlanSearch extends ArtistPlan
     {
         $intervalStart = $year .'-01-01 00:00:00';
 		$intervalEnd = $year .'-12-31 00:00:00';
-		$artistSearchModel = new ArtistSearch();
-		$activeCelebrities = $artistSearchModel->searchActiveCelebrities()->getModels();
-		
-		$artistIds = array();
-		
-		foreach ($activeCelebrities as $celebrity) {
-			$artistIds[] = $celebrity->id;
-		}
 		
 		$query = ArtistPlan::find()
-			->andWhere(['show_status' => 1])
-			->andWhere(['in', 'artist_id', $artistIds])
+			->innerJoin('artist', 'artistplan.artist_id = artist.id')
+			->andWhere(['artistplan.show_status' => 1])
+			->andWhere(['artist.show_status' => 1])
+			->andWhere(['artist.celebrity_status' => 1])
 			->andWhere(['between', 'start_date', self::$startOfTime, $intervalEnd])
 			->andWhere(['between', 'end_date', $intervalStart, self::$endOfTime])
 			->orderBy(["artist.show_order" => SORT_ASC]);
