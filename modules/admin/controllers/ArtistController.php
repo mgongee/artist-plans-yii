@@ -142,7 +142,23 @@ class ArtistController extends AdminDefaultController
      */
     public function actionDelete($id)
     {
+		$connection = Yii::$app->db; 
+		
+		// delete genres of artistplans
+		$command = $connection->createCommand(
+		'DELETE a.* FROM `artistplan_to_genre` AS a
+		JOIN `artistplan` ON a.`artistplan_id` = `artistplan`.`id` 
+		JOIN `artist` ON `artistplan`.`artist_id` = `artist`.`id` 
+		WHERE `artist`.`id` = ' . intval($id));
+		$command->execute(); 
+		
+		// delete artistplans
 		ArtistPlan::deleteAll('artist_id = ' . intval($id));
+		
+		// delete artist genres
+		ArtistToGenre::deleteAll('artist_id = ' . intval($id));
+		
+		// delete artist
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

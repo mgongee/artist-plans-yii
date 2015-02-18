@@ -175,6 +175,7 @@ class ArtistplanController extends AdminDefaultController
      */
     public function actionDelete($id)
     {
+		ArtistplanToGenre::deleteAll('artistplan_id = ' . intval($id));
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
