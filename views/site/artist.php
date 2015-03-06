@@ -19,7 +19,7 @@ $this->params['headerLinks'] = $headerLinks;
     <h1><?= Html::encode($this->title) ?></h1>
     
     <?= GridView::widget([
-		'layout' => '{items}',
+		'layout' => '{items} {pager}',
 		'filterModel' => null,
         'dataProvider' => $dataProvider,
         'columns' => [

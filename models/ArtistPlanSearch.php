@@ -113,8 +113,11 @@ class ArtistPlanSearch extends ArtistPlan
 		
 		$query->orderBy(["artist.show_order" => SORT_ASC]);
 		
-        $dataProvider = new ActiveDataProvider([
+		$dataProvider = new ActiveDataProvider([
             'query' => $query,
+			'pagination' => [
+				'pageSize' => 40
+			]
         ]);
 
         return $dataProvider;
@@ -148,6 +151,9 @@ class ArtistPlanSearch extends ArtistPlan
 		
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+			'pagination' => [
+				'pageSize' => 40
+			]
         ]);
 
         return $dataProvider;
@@ -174,8 +180,11 @@ class ArtistPlanSearch extends ArtistPlan
 			->andWhere(['between', 'end_date', $intervalStart, self::$endOfTime])
 			->orderBy(["artist.show_order" => SORT_ASC]);
 		
-        $dataProvider = new ActiveDataProvider([
+		$dataProvider = new ActiveDataProvider([
             'query' => $query,
+			'pagination' => [
+				'pageSize' => 40
+			]
         ]);
 
         return $dataProvider;
@@ -203,6 +212,9 @@ class ArtistPlanSearch extends ArtistPlan
 		
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+			'pagination' => [
+				'pageSize' => 40
+			]
         ]);
 
         return $dataProvider;

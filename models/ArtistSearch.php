@@ -79,6 +79,9 @@ class ArtistSearch extends Artist
 		
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+			'pagination' => [
+				'pageSize' => 40
+			]
         ]);
 
         return $dataProvider;
@@ -146,6 +149,9 @@ WHERE ct.name = :continent';
 		
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+			'pagination' => [
+				'pageSize' => 40
+			]
         ]);
 
         return $dataProvider;
@@ -162,6 +168,9 @@ WHERE ct.name = :continent';
 		
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+			'pagination' => [
+				'pageSize' => 40
+			]
         ]);
 
         return $dataProvider;
