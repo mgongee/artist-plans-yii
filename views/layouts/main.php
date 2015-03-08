@@ -56,9 +56,9 @@ AppAsset::register($this);
 				<td width="960" valign="top" align="center">
 					
 					<form name="form4">
-						<select style="font-size:36px;color:#006699;font-family:Roboto Condensed;background-color:#FFFF99;" 
+						<select style="font-size:40px;color:#006699;font-family:Roboto Condensed;background-color:#FFFF99;" 
 								name="menu" onChange="location=document.form4.menu.options[document.form4.menu.selectedIndex].value;">
-							<option value=''>Select Other Continent</option>
+							<option value=''>Select Continent</option>
 							<option value="/africa">Africa</option>
 							<option value="/asia">Asia</option>
 							<option value="/australia">Australia</option>
@@ -99,6 +99,7 @@ AppAsset::register($this);
                 ],
             ]);
 			
+	
 			$items = [
 				['label' => 'Artists', 'url' => ['/admin/artist']],	
 				['label' => 'Artist plans', 'url' => ['/admin/artistplan']],	
@@ -141,7 +142,7 @@ AppAsset::register($this);
         <div class="container">
 					
             <p class="pull-left">&copy; ArtistPlans.com <?= date('Y') ?></p>
-		&nbsp;&nbsp;&nbsp; <a href="http://www.callu.net/gigsplans/contact.html" title="Contact us here, one of our staff will call you back within 15 minutes" Target="_blank">Contact</a>&nbsp;&nbsp;<a href="http://www.callu.net/" title="Intelligent booking assistance service, one of our staff will call you back within 15 minutes" Target="_blank"><img src="http://www.callu.net/im/callyounetv102x24.png" width="102" height="24" alt="Worldwide booker broker for Artists/Bands"></a> <a href="http://www.twitter.com/artistguide" TARGET="_blank" title="FOLLOW US ON TWITTER"><img src="http://www.callu.net/im/twitterv103x24.png" width="103" height="24" alt="WELCOME TO OUR TWITTER"></a>&nbsp;<a href="https://www.facebook.com/Callyounetcom" TARGET="_blank" title="CallYouNet Worldbooking.net FACEBOOK"><img src="http://www.callu.net/im/facebookv112x24.png" width="112" height="24" alt="ON FACEBOOK"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  * Artist Plans are subject to change!
+		&nbsp;&nbsp;&nbsp; <a href="http://www.callu.net/gigsplans/contact.html" title="Contact us here, one of our staff will call you back within 15 minutes" Target="_blank">Contact</a>&nbsp;&nbsp;<a href="http://www.callyounet.com/" title="Intelligent booking assistance service, one of our staff will call you back within 15 minutes" Target="_blank"><img src="http://www.callu.net/im/callyounetv102x24.png" width="102" height="24" alt="Worldwide booker broker for Artists/Bands"></a> <a href="http://www.twitter.com/artistguide" TARGET="_blank" title="FOLLOW US ON TWITTER"><img src="http://www.callu.net/im/twitterv103x24.png" width="103" height="24" alt="WELCOME TO OUR TWITTER"></a>&nbsp;<a href="https://www.facebook.com/Callyounetcom" TARGET="_blank" title="CallYouNet Worldbooking.net FACEBOOK"><img src="http://www.callu.net/im/facebookv112x24.png" width="112" height="24" alt="ON FACEBOOK"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  * Artist Plans are subject to change.
             <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
     </footer>

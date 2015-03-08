@@ -22,7 +22,7 @@ $this->params['headerLinks'] = $headerLinks;
     <h1><?= Html::encode($this->title) ?></h1>
     
 <?= GridView::widget([
-	'layout' => '{items} {pager}',
+	'layout' => '{items} {pager}',	
 	'filterModel' => null,
 	'dataProvider' => $dataProvider,
 	'columns' => [
@@ -36,17 +36,16 @@ $this->params['headerLinks'] = $headerLinks;
 				$genresList = $artist->getGenresList();
 
 				$html = '<h3>' . Html::a($artist->website_url, $linkUrl, ['target' => '_blank']) . '</h3>' 
-					. 'Artist: <strong>' . $artist->name . '</strong>'
+					. 'Artist/Band: <strong>' . $artist->name . '</strong>'
+					. '<br>Tour: <strong>' . $artistplan->name . '</strong>'
 					. '<br>' . $artistplan->getDates();
 
 				if ($genresList) {
 					$html .= '<br>Genres: <i>' . $genresList . '</i>';
 				}
 				
-				$html .= '<br>Tour name: <i>' . $artistplan->name . '</i>';
-				
 				if ($cityName) {
-					$html .= '<br>HomeTown: <i>' . $cityName . '</i>';
+					$html .= '<br>Home: <i>' . $cityName . '</i>';
 				}
 				
 				return $html;

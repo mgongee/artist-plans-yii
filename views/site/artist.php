@@ -31,15 +31,15 @@ $this->params['headerLinks'] = $headerLinks;
 					$linkUrl = Misc::addScheme($artist->website_url);
 					$genresList = $artist->getGenresList();
 					
-					$html = Html::a($artist->website_url, $linkUrl, ['target' => '_blank'])
-						. '<br>Artist: <strong>' . $artist->name . '</strong>';
+					$html = '<strong>' . Html::a($artist->website_url, $linkUrl, ['target' => '_blank']) . '</strong>'
+						. '<br>Artist/Band: <strong>' . $artist->name . '</strong>';
 					
 					if ($genresList) {
 						$html .= '<br>Genres: <i>' . $genresList . '</i>';
 					}
 										
 					if ($artist->tour_info) {
-						$html .= '<br>Tour info: <br>' . $artist->tour_info. '';
+						$html .= '<br>info: ' . $artist->tour_info. '';
 					}
 					return $html;
 						
