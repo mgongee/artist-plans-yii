@@ -30,12 +30,15 @@ $this->params['headerLinks'] = $headerLinks;
 			'value' => function($artistplan) {
 				$artist = $artistplan->getArtist()->one();
 				$linkUrl = Misc::addScheme($artist->website_url);
-				$cityName = $artist->getCityName();
+				$cityName = $artistplan->getCityName();
+				$artistUrl = $artist->getUrl();
 				$genresList = $artist->getGenresList();
+
+				$tourLink = '<a href="/artist/' . $artistUrl  . '">Tour</a>';
 
 				$html = '<h3>' . Html::a($artist->website_url, $linkUrl, ['target' => '_blank']) . '</h3>' 
 					. 'Artist/Band: <strong>' . $artist->name . '</strong>'
-					. '<br>Tour: <strong>' . $artistplan->name . '</strong>'
+					. '<br>' . $tourLink . ': <strong>' . $artistplan->name . '</strong>'
 					. '<br>' . $artistplan->getDates();
 
 				if ($genresList) {
@@ -46,6 +49,9 @@ $this->params['headerLinks'] = $headerLinks;
 					$html .= '<br>Home: <i>' . $cityName . '</i>';
 				}
 				
+				if ($artistplan->info) {
+					$html .= '<br>info: ' . $artistplan->info . '';
+				}
 				return $html;
 
 			},

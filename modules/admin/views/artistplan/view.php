@@ -23,8 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Edit Artist plan', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a('Copy genres from Artist', ['copygenres', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+		<?= Html::a('Copy info from Artist', ['copyinfo', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
 		<?= Html::a('Edit genres', ['editgenres', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -53,6 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'value' => $genres,
 			],
             'continent',
+			'info:ntext',
 			[
 				'label' => 'Start date',
 				'value' => Yii::$app->formatter->asDate($model->start_date, 'long'),

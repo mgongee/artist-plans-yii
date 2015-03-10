@@ -15,6 +15,7 @@ use Yii;
  * @property string $start_date
  * @property string $end_date
  * @property string $show_status
+ * @property string $info 
  *
  * @property Artist $artist
  */
@@ -42,7 +43,7 @@ class ArtistPlan extends \yii\db\ActiveRecord
         return [
 			[['name', 'artist_id', 'continent', 'start_date', 'show_status'], 'required'],
 			[['artist_id', 'city_id', 'show_status'], 'integer'],
-            [['continent'], 'string'],
+            [['continent', 'info'], 'string'],
             [['start_date', 'end_date'], 'safe'],
             [['name'], 'string', 'max' => 255]
         ];
@@ -174,6 +175,20 @@ class ArtistPlan extends \yii\db\ActiveRecord
 			$artistgenre->save();
 			$modelChanged = true;
 		}
+		return $modelChanged;
+	}
+	
+	
+	/** 
+	 * Copies info from Artist to Artist Plan
+	 */
+	public function copyInfoFromArtist() {
+		$modelChanged = false;
+		
+		$artist = $this->getArtist()->one();
+		$this->info = $artist->tour_info;
+		if ($this->save()) $modelChanged = true;
+		
 		return $modelChanged;
 	}
 }

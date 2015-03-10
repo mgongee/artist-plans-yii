@@ -36,6 +36,8 @@ use app\models\Artist;
 
     <?= $form->field($model, 'continent')->dropDownList([ 'Asia' => 'Asia', 'Australia' => 'Australia', 'Europe' => 'Europe', 'North America' => 'North America', 'Africa' => 'Africa', 'Oceania' => 'Oceania', 'Antarctica' => 'Antarctica', 'South America' => 'South America']) ?>
 
+	<?= $form->field($model, 'info')->textarea(['rows' => 6]) ?>
+	
     <?= $form->field($model, 'start_date')->widget(DatePicker::classname(), [
 			'options' => ['placeholder' => 'Enter start date ...'],
 			'pluginOptions' => [

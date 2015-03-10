@@ -23,7 +23,7 @@ class ArtistPlanSearch extends ArtistPlan
     {
         return [
             [['id', 'artist_id', 'city_id', 'show_status'], 'integer'],
-            [['name', 'continent', 'start_date', 'end_date'], 'safe'],
+            [['name', 'continent', 'start_date', 'end_date', 'info'], 'safe'],
         ];
     }
 
@@ -65,7 +65,8 @@ class ArtistPlanSearch extends ArtistPlan
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'continent', $this->continent]);
+            ->andFilterWhere(['like', 'continent', $this->continent])
+			->andFilterWhere(['like', 'info', $this->info]);
 
         return $dataProvider;
     }
@@ -190,6 +191,29 @@ class ArtistPlanSearch extends ArtistPlan
         return $dataProvider;
     }
 	
+	
+    /**
+     * Creates data provider instance with search query applied
+     *
+	 * @param $artistId integer
+     * @return ActiveDataProvider
+     */
+    public function searchByArtist($artistId)
+    {
+		$query = ArtistPlan::find()
+			->innerJoin('artist', 'artistplan.artist_id = artist.id')
+			->andWhere(['artist_id' => $artistId])
+			->orderBy(["artist.show_order" => SORT_ASC]);
+		
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+			'pagination' => [
+				'pageSize' => 40
+			]
+        ]);
+
+        return $dataProvider;
+    }
 	
     /**
      * Creates data provider instance with search query applied

@@ -9,9 +9,12 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
+use app\models\Artist;
 use app\models\ArtistSearch;
 use app\models\ArtistPlanSearch;
 use yii\db\Query;
+
+use yii\web\NotFoundHttpException;
 
 
 class SiteController extends Controller
@@ -133,6 +136,36 @@ class SiteController extends Controller
 			}
 		}
 		return $this->actionArtistplansWorldYear();
+	}
+	
+	
+		
+	/**
+	 * Route:
+	 * 'artist/<name:\w+>' => 'site/singleartist',
+	 */
+    public function actionSingleartist()
+	{
+		$get = Yii::$app->request->queryParams;
+		if (isset($get['name'])) {
+			$name = str_replace('-', ' ', strtolower($get['name']));
+			
+			$artist = Artist::find()
+				->andFilterWhere(['like', 'name', $name])
+				->one();
+
+			if ($artist) {
+				$searchModel = new ArtistPlanSearch();
+				$artistplansDataProvider = $searchModel->searchByArtist($artist->id);
+
+				return $this->render('singleartist', [
+					'headerLinks' => $this->generateLinks('world'),
+					'artist' => $artist,
+					'artistplansDataProvider' => $artistplansDataProvider
+				]);
+			}
+		}
+		throw new NotFoundHttpException('Specified Artist not found');
 	}
 	
 	public function actionArtistContinent($continent) {

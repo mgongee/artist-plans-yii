@@ -37,7 +37,11 @@ $this->params['headerLinks'] = $headerLinks;
 					if ($genresList) {
 						$html .= '<br>Genres: <i>' . $genresList . '</i>';
 					}
-										
+					
+					if ($artist->city_id) {
+						$html .= '<br>Home: <i>' . $artist->getCityName() . '</i>';
+					}
+					
 					if ($artist->tour_info) {
 						$html .= '<br>info: ' . $artist->tour_info. '';
 					}

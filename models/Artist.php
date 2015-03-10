@@ -123,6 +123,17 @@ class Artist extends \yii\db\ActiveRecord
 	
 	
     /**
+     * Generates an URL to the artist page
+     * @return string
+     */
+    public function getUrl()
+    {
+		$url = str_replace(' ', '-' , strtolower($this->name));
+		return $url;
+    }
+	
+	
+    /**
      * Returns title of the current status of this artist
 	 * @return string
      */

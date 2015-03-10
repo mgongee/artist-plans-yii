@@ -167,6 +167,33 @@ class ArtistplanController extends AdminDefaultController
 			]);
     }
 	
+	
+	/**
+     * Copies info from Artist to Artist Plan
+     * If copying is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionCopyinfo($id)
+    {
+        $model = $this->findModel($id);
+        if ($model->copyInfoFromArtist())
+			return $this->redirect([
+				'view', 
+				'id' => $model->id,
+				'message' => 'Info successfully copied',
+				'error' => false
+			]);
+		else
+			return $this->redirect([
+				'view', 
+				'id' => $model->id,
+				'message' => 'Copying failed due to unknown reason',
+				'error' => true
+			]);
+    }
+	
+	
     /**
      * Deletes an existing ArtistPlan model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

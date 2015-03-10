@@ -51,6 +51,7 @@ $config = [
 				'admin' => 'admin/default/index',
 				'admin/<controller:\w+>' => 'admin/<controller>/index',
 				'admin/<controller:\w+>/<action:\w+>' => 'admin/<controller>/<action>',
+				'artist/<name:([0-9a-zA-Z\-]+)>' => 'site/singleartist',
 				'<route:\w+>' => 'site/artist',
 				'<route:\w+>/<year:\d+>' => 'site/artistplansforyear',
 				'<route:\w+>/<year:\d+>/<month:\d+>' => 'site/artistplans',

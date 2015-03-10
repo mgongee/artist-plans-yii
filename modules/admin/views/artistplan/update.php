@@ -19,7 +19,10 @@ $this->params['breadcrumbs'][] = 'Update';
         'model' => $model,
     ]) ?>
 
-	<h2>Genres: <?php echo $genres; ?></h2>
+	<br>
+	<hr>
+	<br>
+	<h2>Genres: <?php echo $genres ? $genres : '<i>none</i>'; ?></h2>
 	
 	<p>
         <?= Html::a('Edit genres', ['editgenres', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
