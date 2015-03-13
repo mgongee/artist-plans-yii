@@ -29,9 +29,18 @@ $this->params['headerLinks'] = $headerLinks;
 				'value' => function($artist) {
 					$linkUrl = Misc::addScheme($artist->website_url);
 					$genresList = $artist->getGenresList();
+					$artistUrl = $artist->getUrl();
 					
 					$html = '<strong>' . Html::a($artist->website_url, $linkUrl, ['target' => '_blank']) . '</strong>'
 						. '<br>Artist/Band: <strong>' . $artist->name . '</strong>';
+					
+					if ($artistUrl) {
+						$html .= '  <a href="/artist/' . $artistUrl  . '">Tour</a>';
+					}
+					
+					if ($artist->getCityName()) {
+						$html .= '<br>Home: <i>' . $artist->getCityName() . '</i>';
+					}
 					
 					if ($genresList) {
 						$html .= '<br>Genres: <i>' . $genresList . '</i>';

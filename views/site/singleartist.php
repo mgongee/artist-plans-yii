@@ -41,16 +41,7 @@ $this->params['headerLinks'] = $headerLinks;
 				$html = '<strong>' . $artistplan->name . '</strong>'
 					. '<br>' . $artistplan->getDates();
 
-				if ($artistplan->city_id) {
-					$html .= '<br>Home: ' . $artistplan->getCityName() . ' (' . $artistplan->continent . ')';
-				}
-				else {
-					$html .= '<br>Continent: ' . $artistplan->continent . '';
-				}
-				
-				if ($artistplan->info) {
-					$html .= '<br>info: ' . $artistplan->info . '';
-				}
+				$html .= '<br>Continent: ' . $artistplan->continent . '';
 				
 				return $html;
 
