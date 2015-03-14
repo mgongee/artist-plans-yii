@@ -29,13 +29,19 @@ $this->params['headerLinks'] = $headerLinks;
 				'value' => function($artist) {
 					$linkUrl = Misc::addScheme($artist->website_url);
 					$genresList = $artist->getGenresList();
+					$artistHasTours = $artist->getArtistplans()->one();
 					$artistUrl = $artist->getUrl();
 					
 					$html = '<strong>' . Html::a($artist->website_url, $linkUrl, ['target' => '_blank']) . '</strong>'
 						. '<br>Artist/Band: <strong>' . $artist->name . '</strong>';
 					
-					if ($artistUrl) {
-						$html .= '  <a href="/artist/' . $artistUrl  . '">Tour</a>';
+					if ($artistHasTours) {
+						if ($artistUrl) {
+							$html .= '  <a href="/artist/' . $artistUrl  . '">TourContinent</a>';
+						}
+					}
+					else {
+						$html .= '. <em>We do not have all info about plannings</em>. ';
 					}
 					
 					if ($artist->getCityName()) {
@@ -49,6 +55,11 @@ $this->params['headerLinks'] = $headerLinks;
 					if ($artist->tour_info) {
 						$html .= '<br>info: ' . $artist->tour_info. '';
 					}
+					
+					if (!$artistHasTours && $artist->tour_link) {
+						$html .= '<br>' . Html::a('Check Booking Availability', $artist->tour_link, ['class' => 'btn btn-success']);
+					}
+						
 					
 					return $html;
 						

@@ -43,6 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			'show_order',
 			['attribute' => 'show_status', 'value' => $model->getShowName()],
 			'tour_info:ntext',
+			'tour_link',
         ],
     ]) ?>
 

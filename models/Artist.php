@@ -16,6 +16,7 @@ use Yii;
  * @property integer $show_order 
  * @property integer $show_status
  * @property string $tour_info 
+ * @property string $tour_link
  * 
  * @property City $city
  * @property Artistgenre[] $artistgenres 
@@ -51,7 +52,7 @@ class Artist extends \yii\db\ActiveRecord
         return [
 			[['name', 'city_id', 'celebrity_status', 'show_order', 'show_status'], 'required'],
             [['city_id', 'celebrity_status', 'show_order', 'show_status'], 'integer'],
-			[['tour_info'], 'string'],
+			[['tour_info', 'tour_link'], 'string'],
             [['name', 'website_url', 'picture_url'], 'string', 'max' => 255] //	[['show'], 'default', 'value' => 1]
         ];
     }
@@ -71,6 +72,7 @@ class Artist extends \yii\db\ActiveRecord
 			'show_order' => 'Order', 
 			'show_status' => 'Show', 
 			'tour_info' => 'Tour Info',
+			'tour_link' => 'Tour Link',
         ];
     }
 
@@ -87,7 +89,7 @@ class Artist extends \yii\db\ActiveRecord
      */
     public function getArtistplans()
     {
-        return $this->hasMany(Artistplan::className(), ['artist_id' => 'id']);
+        return $this->hasMany(ArtistPlan::className(), ['artist_id' => 'id']);
     }
 	
     /**
